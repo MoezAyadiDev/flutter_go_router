@@ -4,7 +4,7 @@ import 'package:flutter_go_router/features/auth/logic/service/user_service.dart'
 import 'package:flutter_go_router/features/auth/presentation/singin/cubit/signin_cubit.dart';
 import 'package:flutter_go_router/features/shop/logic/repository/article_repository.dart';
 import 'package:flutter_go_router/features/shop/logic/service/article_service.dart';
-import 'package:flutter_go_router/features/shop/presentation/cubit/shop_cubit.dart';
+import 'package:flutter_go_router/features/shop/presentation/dashboard/cubit/shop_cubit.dart';
 import 'package:get_it/get_it.dart';
 
 final getIt = GetIt.instance;

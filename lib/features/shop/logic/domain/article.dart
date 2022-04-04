@@ -17,4 +17,21 @@ class Article extends Equatable {
         libelle,
         price,
       ];
+
+  Article.fromJson(Map<String, dynamic> json)
+      : code = json['code'],
+        libelle = json['libelle'],
+        price = json['price'];
+
+  Map<String, dynamic> toJson() => {
+        'code': code,
+        'libelle': libelle,
+        'price': price,
+      };
+
+  Map<String, String> toParam() => {
+        'code': code,
+        'libelle': libelle,
+        'price': price.toString(),
+      };
 }

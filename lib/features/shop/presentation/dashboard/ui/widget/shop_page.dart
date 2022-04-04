@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_go_router/features/shop/presentation/cubit/shop_cubit.dart';
-import 'package:flutter_go_router/features/shop/presentation/ui/widget/article_card.dart';
+import 'package:flutter_go_router/features/shop/presentation/dashboard/cubit/shop_cubit.dart';
+import 'package:flutter_go_router/features/shop/presentation/dashboard/ui/widget/article_card.dart';
 
 class ShopPage extends StatelessWidget {
   const ShopPage({Key? key}) : super(key: key);
@@ -11,8 +11,11 @@ class ShopPage extends StatelessWidget {
     return BlocConsumer<ShopCubit, ShopState>(
       listener: (context, state) {
         if (state is ShopFailed) {
-          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-              content: Text('Erreur de chargement de list d\'article')));
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Erreur de chargement de list d\'article'),
+            ),
+          );
         }
       },
       builder: (context, state) {
