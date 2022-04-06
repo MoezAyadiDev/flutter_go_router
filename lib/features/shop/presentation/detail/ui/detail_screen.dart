@@ -12,14 +12,12 @@ class DetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SessionWidget(
-      child: Scaffold(
-        appBar: AppBar(
-          //title: Text('Detail Screen ${article.libelle}'),
-          title: Text('Detail Screen $article'),
-        ),
-        //body: DetailScreen(article: article),
+    return Scaffold(
+      appBar: AppBar(
+        //title: Text('Detail Screen ${article.libelle}'),
+        title: Text('Detail Screen $article'),
       ),
+      //body: DetailScreen(article: article),
     );
   }
 }

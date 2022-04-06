@@ -1,6 +1,8 @@
 import 'package:flutter_go_router/features/shop/logic/domain/article.dart';
 import 'package:flutter_go_router/features/shop/logic/repository/article_repository.dart';
+import 'package:injectable/injectable.dart';
 
+@injectable
 class ArticleService {
   final ArticleRepository _repository;
 

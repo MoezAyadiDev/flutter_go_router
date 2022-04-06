@@ -1,9 +1,11 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_go_router/features/auth/logic/service/user_service.dart';
+import 'package:injectable/injectable.dart';
 
 part 'signin_state.dart';
 
+@injectable
 class SigninCubit extends Cubit<SigninState> {
   final UserService _service;
   SigninCubit(UserService service)

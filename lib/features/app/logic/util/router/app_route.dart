@@ -8,76 +8,75 @@ import 'package:flutter_go_router/features/shop/logic/domain/article.dart';
 import 'package:flutter_go_router/features/shop/presentation/dashboard/ui/shop_screen.dart';
 import 'package:flutter_go_router/features/shop/presentation/detail/ui/detail_screen.dart';
 import 'package:go_router/go_router.dart';
+import 'package:injectable/injectable.dart';
 
-SessionCubit sessionCubit = getIt<SessionCubit>();
+@injectable
+class AppRouter {
+  final SessionCubit sessionCubit;
+  const AppRouter(this.sessionCubit);
 
-final appRouter = GoRouter(
-  debugLogDiagnostics: true,
-  initialLocation: '/',
-  routes: [
-    GoRoute(
-      name: PageName.pageSplash,
-      path: '/',
-      pageBuilder: (context, state) => MaterialPage(
-        key: state.pageKey,
-        child: const SplashScreen(),
-      ),
-    ),
-    GoRoute(
-      name: PageName.pageSignIn,
-      path: '/signIn',
-      pageBuilder: (context, state) => MaterialPage(
-        key: state.pageKey,
-        child: const AuthScreen(),
-      ),
-    ),
-    GoRoute(
-      name: PageName.pageHome,
-      path: '/home',
-      pageBuilder: (context, state) => MaterialPage(
-        key: state.pageKey,
-        child: const ShopScreen(),
-      ),
+  GoRouter appRouter() {
+    return GoRouter(
+      debugLogDiagnostics: true,
+      //initialLocation: '/',
       routes: [
         GoRoute(
-          name: PageName.pageDetail,
-          path: 'detail/:code',
-          pageBuilder: (context, state) {
-            //final article = Article.fromJson(state.params);
-            return MaterialPage(
-              key: state.pageKey,
-              child: DetailScreen(article: state.params['code']!),
-            );
-          },
+          name: PageName.pageSplash,
+          path: '/',
+          builder: (context, state) => const SplashScreen(),
+        ),
+        GoRoute(
+          name: PageName.pageSignIn,
+          path: '/signIn',
+          builder: (context, state) => const AuthScreen(),
+        ),
+        GoRoute(
+          name: PageName.pageHome,
+          path: '/home',
+          builder: (context, state) => const ShopScreen(),
+          routes: [
+            GoRoute(
+              name: PageName.pageDetail,
+              path: 'detail/:code',
+              builder: (context, state) {
+                return DetailScreen(article: state.params['code']!);
+              },
+              // pageBuilder: (context, state) {
+              //   //final article = Article.fromJson(state.params);
+              //   return MaterialPage(
+              //     key: state.pageKey,
+              //     child: DetailScreen(article: state.params['code']!),
+              //   );
+              // },
+            ),
+          ],
         ),
       ],
-    ),
-  ],
-  errorPageBuilder: (context, state) => MaterialPage(
-    key: state.pageKey,
-    child: Scaffold(
-      body: Center(
-        child: Text(
-          '404 Not Found : ${state.error.toString()}',
+      errorPageBuilder: (context, state) => MaterialPage(
+        key: state.pageKey,
+        child: Scaffold(
+          body: Center(
+            child: Text(
+              '404 Not Found : ${state.error.toString()}',
+            ),
+          ),
         ),
       ),
-    ),
-  ),
-  urlPathStrategy: UrlPathStrategy.path,
-  refreshListenable: GoRouterRefreshStream(sessionCubit.stream),
-  // redirect: (state) {
-  //   debugPrint('redirect = ' + state.location.toString());
+      urlPathStrategy: UrlPathStrategy.path,
+      refreshListenable: GoRouterRefreshStream(sessionCubit.stream),
+      redirect: (state) {
+        debugPrint('redirect = ' + state.location.toString());
+        debugPrint('sessionCubit.state = ' + sessionCubit.state.toString());
 
-  //   // // if the user is not logged in, they need to login
-  //   // final loggedIn = loginInfo.loggedIn;
-  //   // final loggingIn = state.subloc == '/login';
-  //   // if (!loggedIn) return loggingIn ? null : '/login';
+        //   // if the user is not logged in, they need to login
 
-  //   // // if the user is logged in but still on the login page, send them to
-  //   // // the home page
-  //   // if (loggingIn) return '/';
+        if (sessionCubit.state is IsSignedIn) return '/home';
+        if (sessionCubit.state is IsSignedOut) return '/signIn';
+        //   if (sessionCubit.state is IsInitialState) return '/';
 
-  //   // no need to redirect at all
-  //   return null;
-  // },
-);
+        //   //no need to redirect at all
+        return null;
+      },
+    );
+  }
+}

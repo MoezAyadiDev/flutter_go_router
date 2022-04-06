@@ -11,23 +11,21 @@ class AuthScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SessionWidget(
-      child: BlocProvider(
-        create: (context) => getIt<SigninCubit>(),
-        child: Scaffold(
-          appBar: AppBar(
-            title: const Text('Auth Screen'),
-          ),
-          body: Builder(
-            builder: (context) => BlocListener<SigninCubit, SigninState>(
-              listener: (context, state) {
-                debugPrint('SignIn Cubit State ' + state.toString());
-                if (state is SignInSucces) {
-                  BlocProvider.of<SessionCubit>(context).login();
-                }
-              },
-              child: const AuthPage(),
-            ),
+    return BlocProvider(
+      create: (context) => getIt<SigninCubit>(),
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('Auth Screen'),
+        ),
+        body: Builder(
+          builder: (context) => BlocListener<SigninCubit, SigninState>(
+            listener: (context, state) {
+              debugPrint('SignIn Cubit State ' + state.toString());
+              if (state is SignInSucces) {
+                BlocProvider.of<SessionCubit>(context).login();
+              }
+            },
+            child: const AuthPage(),
           ),
         ),
       ),

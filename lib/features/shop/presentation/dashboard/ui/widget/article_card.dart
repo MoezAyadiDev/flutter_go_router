@@ -22,6 +22,6 @@ class ArticleCard extends StatelessWidget {
   }
 
   _onTap(BuildContext context) {
-    BlocProvider.of<SessionCubit>(context).showDetail(article: article);
+    //BlocProvider.of<SessionCubit>(context).showDetail(article: article);
   }
 }

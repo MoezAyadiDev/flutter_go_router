@@ -6,14 +6,12 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SessionWidget(
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text('Splash Screen'),
-        ),
-        body: const Center(
-          child: Text('Splash'),
-        ),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Splash Screen'),
+      ),
+      body: const Center(
+        child: Text('Splash'),
       ),
     );
   }

@@ -1,5 +1,7 @@
 import 'package:flutter_go_router/features/auth/logic/domain/user.dart';
+import 'package:injectable/injectable.dart';
 
+@injectable
 class UserRepository {
   User? _user;
 

@@ -11,34 +11,32 @@ class ShopScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SessionWidget(
-      child: BlocProvider(
-        create: (context) => getIt<ShopCubit>()..getArticle(),
-        child: Scaffold(
-          appBar: AppBar(
-            title: const Text('Shop Screen'),
-            actions: [
-              Builder(builder: (context) {
-                return IconButton(
-                  icon: const Icon(Icons.refresh),
-                  tooltip: 'Logout',
-                  onPressed: () {
-                    ScaffoldMessenger.of(context).clearSnackBars();
-                    BlocProvider.of<ShopCubit>(context).getArticle();
-                  },
-                );
-              }),
-              IconButton(
-                icon: const Icon(Icons.logout),
+    return BlocProvider(
+      create: (context) => getIt<ShopCubit>()..getArticle(),
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('Shop Screen'),
+          actions: [
+            Builder(builder: (context) {
+              return IconButton(
+                icon: const Icon(Icons.refresh),
                 tooltip: 'Logout',
                 onPressed: () {
-                  BlocProvider.of<SessionCubit>(context).loggedOut();
+                  ScaffoldMessenger.of(context).clearSnackBars();
+                  BlocProvider.of<ShopCubit>(context).getArticle();
                 },
-              ),
-            ],
-          ),
-          body: const ShopPage(),
+              );
+            }),
+            IconButton(
+              icon: const Icon(Icons.logout),
+              tooltip: 'Logout',
+              onPressed: () {
+                BlocProvider.of<SessionCubit>(context).loggedOut();
+              },
+            ),
+          ],
         ),
+        body: const ShopPage(),
       ),
     );
   }

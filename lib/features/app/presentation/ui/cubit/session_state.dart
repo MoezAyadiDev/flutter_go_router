@@ -13,9 +13,9 @@ class IsSignedIn extends SessionState {}
 
 class IsSignedOut extends SessionState {}
 
-class ShowDetail extends SessionState {
-  final Article article;
-  const ShowDetail({required this.article});
-  @override
-  List<Object> get props => [article];
-}
+// class ShowDetail extends SessionState {
+//   final Article article;
+//   const ShowDetail({required this.article});
+//   @override
+//   List<Object> get props => [article];
+// }

@@ -1,5 +1,7 @@
 import 'package:flutter_go_router/features/shop/logic/domain/article.dart';
+import 'package:injectable/injectable.dart';
 
+@injectable
 class ArticleRepository {
   List<Article> getArticle() => const [
         Article(code: '001', libelle: 'Pc Portable tochiba', price: 2800.00),

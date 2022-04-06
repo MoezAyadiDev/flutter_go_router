@@ -9,11 +9,13 @@ class ShopApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AppRouter appRouter = getIt<AppRouter>();
+    var appRoute = appRouter.appRouter();
     return BlocProvider(
       create: (BuildContext context) => getIt<SessionCubit>()..initSession(),
       child: MaterialApp.router(
-        routeInformationParser: appRouter.routeInformationParser,
-        routerDelegate: appRouter.routerDelegate,
+        routeInformationParser: appRoute.routeInformationParser,
+        routerDelegate: appRoute.routerDelegate,
         debugShowCheckedModeBanner: false,
       ),
     );
