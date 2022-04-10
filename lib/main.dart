@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_go_router/data.dart';
-import 'package:flutter_go_router/features/app/logic/util/injection/injection.dart';
-import 'package:flutter_go_router/features/app/presentation/ui/shop_app.dart';
-import 'package:go_router/go_router.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_go_router/feature/app/core/injection/injection.dart';
+import 'package:flutter_go_router/feature/app/presentation/ui/app_screen.dart';
+import 'package:flutter_go_router/feature/shop/presentation/ui/shop_page.dart';
 
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  configureDependencies();
-  runApp(const ShopApp());
+  //configureDependencies();
+  await resolveDependencies();
+  runApp(const AppPage());
 }
 // void main() => runApp(App());
 
