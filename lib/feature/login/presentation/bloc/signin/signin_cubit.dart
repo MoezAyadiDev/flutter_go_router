@@ -1,10 +1,11 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_go_router/feature/login/logic/service/signin_service.dart';
+import 'package:injectable/injectable.dart';
 
 part 'signin_state.dart';
 
+@Singleton()
 class SigninCubit extends Cubit<SigninState> {
   final SignInService _service;
 

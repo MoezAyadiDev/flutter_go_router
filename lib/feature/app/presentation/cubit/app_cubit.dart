@@ -4,9 +4,11 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_go_router/feature/login/logic/domain/user.dart';
 import 'package:flutter_go_router/feature/login/logic/repositories/authentification_repository.dart';
+import 'package:injectable/injectable.dart';
 
 part 'app_state.dart';
 
+@Singleton()
 class AppCubit extends Cubit<AppState> {
   final AuthentificationRepository _authenticationGateway;
   late final StreamSubscription<User> _userSubscription;

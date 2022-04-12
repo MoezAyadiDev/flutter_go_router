@@ -1,13 +1,15 @@
 import 'dart:async';
 
 import 'package:flutter_go_router/feature/login/logic/domain/user.dart';
+import 'package:injectable/injectable.dart';
 
 enum AuthenticationStatus { unknown, authenticated, unauthenticated }
 
+@LazySingleton()
 class AuthentificationRepository {
-  AuthentificationRepository({this.isAuthenticated = false});
+  AuthentificationRepository(); //this.isAuthenticated = false});
 
-  bool isAuthenticated;
+  bool isAuthenticated = false;
 
   final _controller = StreamController<User>.broadcast();
 

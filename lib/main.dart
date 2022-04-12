@@ -6,7 +6,8 @@ import 'package:flutter_go_router/feature/shop/presentation/ui/shop_page.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   //configureDependencies();
-  await resolveDependencies();
+  configureDependencies();
+  //await resolveDependencies();
   runApp(const AppPage());
 }
 // void main() => runApp(App());
