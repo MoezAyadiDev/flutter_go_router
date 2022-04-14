@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_go_router/feature/app/core/injection/injection.dart';
 import 'package:flutter_go_router/feature/app/core/route/app_route.dart';
 import 'package:flutter_go_router/feature/app/presentation/cubit/app_cubit.dart';
+import 'package:flutter_go_router/main.dart';
+import 'package:provider/provider.dart';
 
 class AppPage extends StatelessWidget {
   const AppPage({Key? key}) : super(key: key);
